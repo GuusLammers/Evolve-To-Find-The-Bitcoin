@@ -2,6 +2,7 @@ import pygame as pg
 import os
 import math
 from brain import Brain
+import time
 
 
 class Human:
@@ -26,7 +27,7 @@ class Human:
         # counter to indicate switch to next image
         self.next_image_counter = 0
         # instantiate brain object
-        self.brain = Brain(25)
+        self.brain = Brain(40)
         # starting position
         self.pos = pg.Vector2(pos)
         # starting velocity
@@ -47,6 +48,10 @@ class Human:
         self.fell_off_island = False
         # show image or not
         self.should_show = True
+        # start time
+        self.start_time = time.time()
+        # end time
+        self.end_time = 0
         # call is_best
         self.if_best()
 
@@ -125,7 +130,9 @@ class Human:
                 # kill human
                 self.kill()
             # check if human found the bitcoin
-            elif self.found_bitcoin(bitcoin):
+            elif self.found_bitcoin(bitcoin) and not self.reached_goal:
+                # set end time
+                self.end_time = time.time()
                 # set reached_goals to True
                 self.reached_goal = True 
                 # set image counter to zero
@@ -199,7 +206,9 @@ class Human:
         # check if human found the bitcoin
         if self.reached_goal:
             # fitness will be calculated by taking the inverse of the steps taken divided by 100
-            self.fitness = 1 / ((self.brain.step / 100) ** 2)
+            #self.fitness = 1 / ((self.brain.step / 100) ** 2)
+            # fitness calculated by time required to reach goal
+            self.fitness = 1 / (((self.end_time - self.start_time) / 100) ** 2)
         else:
             # fitness will be calculated by taking the inverse of the distance to the goal squared
             self.fitness = 1 / (self.pos.distance_to(goal_pos) ** 2)
@@ -209,6 +218,7 @@ class Human:
         # set brain equal to parents brain
         self.brain.directions = parent.brain.directions.copy()
 
+    # alters dot propertise on creation if the human is the best from previous generation
     def if_best(self):
         # check if human is the best from previous generation
         if self.best:

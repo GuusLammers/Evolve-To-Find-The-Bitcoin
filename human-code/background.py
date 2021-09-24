@@ -4,8 +4,8 @@ import os
 class Background:
 
     def __init__(self, width):
-        self.background1 = pg.transform.scale(pg.image.load(os.path.abspath(r'C:\Users\guusl\Documents\Guus\Coding Projects\Evolution\human-code\images\background1.png')), (width, width))
-        self.foreground1 = pg.transform.scale(pg.image.load(os.path.abspath(r'C:\Users\guusl\Documents\Guus\Coding Projects\Evolution\human-code\images\foreground1.png')), (width, width))
+        self.background1 = pg.transform.scale(pg.image.load(os.path.abspath(r'C:\Users\guusl\Documents\Guus\Coding Projects\Evolution\human-code\images\background2.png')), (width, width))
+        self.foreground1 = pg.transform.scale(pg.image.load(os.path.abspath(r'C:\Users\guusl\Documents\Guus\Coding Projects\Evolution\human-code\images\foreground2.png')), (width, width))
 
     # show background
     def show(self, win):

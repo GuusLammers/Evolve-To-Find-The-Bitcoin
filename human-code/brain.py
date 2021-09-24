@@ -19,7 +19,7 @@ class Brain:
 
     def mutate(self):
         # mutation rate
-        mutation_rate = 0.01
+        mutation_rate = 0.04
         # iterate through directions
         for i in range(len(self.directions)):
             # get a random number between 0-1

@@ -53,7 +53,6 @@ class Population:
             parent = self.select_parent()
             # add child to new population
             new_population.append(self.get_child(parent))
-
         # add best human
         self.set_best_human()
         new_population.append(self.get_child(self.best_human, best_human=True))
@@ -108,6 +107,8 @@ class Population:
                 best_fitness = human.fitness
         # set best dot
         self.best_human = self.population[index] 
+        print(self.best_human.end_time - self.best_human.start_time)
+        print()
 
     # mutate
     def mutate(self):

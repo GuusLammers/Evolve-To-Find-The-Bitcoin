@@ -34,6 +34,7 @@ def update_win(win, population, goal, background, gen_label):
     if population.all_dead():
         # calculate fitnesses
         population.calculate_fitnesses(goal.pos)
+        print()
         # natural selection
         population.natural_selection()
         # mutate new population
@@ -49,9 +50,9 @@ def main():
     # create generation label
     gen_label = GenerationLabel()
     # create population
-    population = Population(50 , (WIDTH - 150, HEIGHT - 150))
+    population = Population(50 , (100, 100))
     # create goal
-    goal = Bitcoin((100, 100))
+    goal = Bitcoin((WIDTH / 2, HEIGHT - 100))
     # create clock object
     clock = pg.time.Clock()
     # runs main loop until set to False
