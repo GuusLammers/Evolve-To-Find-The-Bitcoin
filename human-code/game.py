@@ -4,10 +4,9 @@ from game_manager import GameManager
 
 # window dimesions
 WIDTH = 750
-HEIGHT = WIDTH
 
 # set display caption, width, and height
-win = pg.display.set_mode((WIDTH, HEIGHT))
+win = pg.display.set_mode((WIDTH, WIDTH))
 pg.display.set_caption('Human Evolution')
 
 # colors object
