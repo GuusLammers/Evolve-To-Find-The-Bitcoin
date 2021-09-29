@@ -1,10 +1,6 @@
 import pygame as pg
 from colors import Colors
-from population import Population
-from bitcoin import Bitcoin
-from background import Background
-from generation_label import GenerationLabel
-
+from game_manager import GameManager
 
 # window dimesions
 WIDTH = 750
@@ -18,41 +14,16 @@ pg.display.set_caption('Human Evolution')
 colors = Colors()
 
 # update window
-def update_win(win, population, goal, background, gen_label):
-    # fill window with black
-    win.fill(colors.black())
-
-    # show background
-    background.show(win)
-    # show generation label
-    gen_label.show(population.generation, win, WIDTH)
-    # show goal
-    goal.show(win)
-    # move population
-    population.update(win, WIDTH, background.get_image_mask(), goal)
-    # evolve population
-    if population.all_dead():
-        # calculate fitnesses
-        population.calculate_fitnesses(goal.pos)
-        print()
-        # natural selection
-        population.natural_selection()
-        # mutate new population
-        population.mutate()
-
+def update_win(win, game_manager):
+    # update game_manager
+    game_manager.update_current_level(win)
     # update display
     pg.display.update()
 
 # main function
 def main():
-    # create background
-    background = Background(WIDTH)
-    # create generation label
-    gen_label = GenerationLabel()
-    # create population
-    population = Population(50 , (100, 100))
-    # create goal
-    goal = Bitcoin((WIDTH / 2, HEIGHT - 100))
+    # create game manger object
+    gm = GameManager(WIDTH)
     # create clock object
     clock = pg.time.Clock()
     # runs main loop until set to False
@@ -68,7 +39,7 @@ def main():
         # use clock to set frame rate
         clock.tick(60)  
         # call update window function
-        update_win(win, population, goal, background, gen_label)
+        update_win(win, gm)
 
     # quit pygame		
     pg.quit()	    
