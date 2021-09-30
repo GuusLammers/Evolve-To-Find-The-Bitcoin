@@ -107,8 +107,6 @@ class Population:
                 best_fitness = human.fitness
         # set best dot
         self.best_human = self.population[index] 
-        print(self.best_human.end_time - self.best_human.start_time)
-        print()
 
     # mutate
     def mutate(self):
