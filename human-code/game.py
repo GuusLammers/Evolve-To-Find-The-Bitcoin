@@ -7,7 +7,7 @@ WIDTH = 750
 
 # set display caption, width, and height
 win = pg.display.set_mode((WIDTH, WIDTH))
-pg.display.set_caption('Human Evolution')
+pg.display.set_caption('Evolve To Find The Bitcoin')
 
 # colors object
 colors = Colors()
